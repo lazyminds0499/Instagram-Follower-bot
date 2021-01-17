@@ -2,8 +2,8 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
 
-USER_NAME = "nky7988@gmail.com"
-PASSWORD = "7988nky@#0"
+USER_NAME = "USER NAME"
+PASSWORD = "PASSWORD"
 similar_account = "chefsteps"
 
 
@@ -52,4 +52,8 @@ class InstaFollower:
     def follow(self):
         follow_button = self.driver.find_elements_by_css_selector("._1XyCr .soMvl button")[:20]
         for button in follow_button:
-            button.click()
+            try:
+                button.click()
+            except ElementClickInterceptedException:
+                cancel = self.driver.find_element_by_xpath('/html/body/div[6]/div/div/div/div[3]/button[2]')
+                cancel.click()
